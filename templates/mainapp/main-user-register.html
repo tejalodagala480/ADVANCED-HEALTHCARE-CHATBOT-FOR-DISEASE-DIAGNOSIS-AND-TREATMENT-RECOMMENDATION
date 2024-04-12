@@ -1,0 +1,266 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="">
+  <meta name="author" content="codebook.in">
+
+  <title>User Registration</title>
+
+  
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/bootstrap/css/bootstrap.min.css' %}">
+
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/icofont/icofont.min.css' %}">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/slick-carousel/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/slick-carousel/slick/slick-theme.css' %}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body id="top">
+  {% if messages %}
+  {% for message in messages %}
+      {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <script>swal({
+                  title: "Success!",
+                  text: "{{message}}",
+                  icon: "success",
+                  button: "OK",
+              });
+          </script>
+      
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+          <script>swal({
+                  title: "Warning :)",
+                  text: "{{message}}",
+                  icon: "warning",
+                  button: "OK",
+              
+              });
+          </script>
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+          <script>swal({
+                  title: "info :)",
+                  text: "{{message}}",
+                  icon: "info",
+                  button: "OK",
+              });
+          </script>
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <script>swal({
+                  title: "error :)",
+                  text: "{{message}}",
+                  icon: "error",
+                  button: "OK",
+              });
+          </script>
+      {% endif %}
+  {% endfor %}
+{% endif %}
+
+<header>
+	
+	<nav class="navbar navbar-expand-lg navigation" id="navbar">
+		<div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'mainapp/images/resized.png' %}" alt="" class="img-fluid">
+      </a>
+
+		  	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icofont-navigation-menu"></span>
+		  </button>
+	  
+		  <div class="collapse navbar-collapse" id="navbarmain">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+			 	<li class="nav-item"><a class="nav-link" href="{% url 'user_login' %}">User</a></li>
+			 	<li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+			</ul>
+		  </div>
+		</div>
+	</nav>
+</header>
+	
+
+
+<!-- User Registration Start -->
+
+<div class="container-fluid bg-gray">
+    <div class="row h-100 align-items-center justify-content-around p-2" >
+        <div class="col-xl-5">
+          <img src="{% static 'mainapp/images/Donts_gif_File.Gif' %}" alt="" class="regimg">
+        </div>
+      
+      <div class=" col-sm-8 col-md-6 col-lg-5 col-xl-5">  
+            <div class="card bg-light rounded p-sm-5 my-2 mx-3">
+                <div class="d-flex align-items-center justify-content-center mb-3">
+                        <h3 class="text-primary">User Registration</h3>
+
+                </div>
+                <div class="form">  
+                  <form method="post" enctype="multipart/form-data" name="myform" onsubmit="return validateRForm()">
+                      {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">      
+                                <label for="floatingInput" >Full Name</label>                 
+                                <input type="text" class="form-control" name="fullname" placeholder="Your Name" autofocus>
+                                </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-floating mb-3">      
+                                  <label for="floatingInput" >Email address</label>                 
+                                  <input type="email" class="form-control" name="email" placeholder="name@example.com" autofocus>
+                              </div>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col"> 
+                                <div class="form-floating mb-3">      
+                                <label for="floatingInput" >Phone Number</label>                 
+                                <input type="text" class="form-control" name="phone" id="floatingInput" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-floating mb-3">      
+                              <label for="floatingInput" >Address</label>                 
+                              <input type="text" class="form-control" name="address" id="floatingInput" placeholder="Address">
+                              </div>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                              <div class="form-floating mb-4">
+                                <label for="floatingPassword" class="form-label"> Password</label>
+                                <input type="password" class="form-control" name="pwd" placeholder="Password">
+                            </div>
+                            </div>
+                            <div class="col mt-2"> 
+                              <div class="form-group">
+                                <label for="img">Upload Profile Picture
+                                <input type="file" class="form-control-file" name="image" accept="image/*"></label>
+                            </div>
+                            </div>
+                        </div>
+                        
+                       
+
+                    <button type="submit" class="btn btn-main btn-round-full py-3 w-100 mb-1">Register</button>
+                   
+                  </form>
+                  <p class="text-center mt-2 mb-0">Already have an account? <a href="{% url 'user_login' %}" class="h6">Login here</a></p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- User Registration End -->
+
+
+
+
+<!-- footer Start -->
+<footer class="footer section gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 mr-auto col-sm-6">
+				<div class="widget mb-4 mb-lg-0">
+					<div class="logo mb-4">
+						<img src="images/logo3.PNG" alt="" class="img-fluid">
+					</div>
+					<p>Social Media Accounts</p>
+
+					<ul class="list-inline footer-socials mt-4">
+						<li class="list-inline-item"><a href="https://www.facebook.com/tejalodagala480"><i class="icofont-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="https://twitter.com/tejalodagala480"><i class="icofont-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.linkedin.com/in/teja-lodagala-317686207"><i class="icofont-linkedin"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget widget-contact mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-3">Get in Touch</h4>
+					<div class="divider mb-4"></div>
+
+					<div class="footer-contact-block mb-3">
+						<div class="icon d-flex align-items-center">
+							<i class="icofont-email mr-3"></i>
+							<span class="h6 mb-0">Support Available for 24/7</span>
+						</div>
+						<h4 class="mt-2"><a href="tel:+23-345-67890">tejalodagala480@gmail.com</a></h4>
+					</div>
+
+					<div class="footer-contact-block">
+						<div class="icon d-flex align-items-center">
+							<i class="icofont-support mr-3"></i>
+							<span class="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
+						</div>
+						<h4 class="mt-2"><a href="tel:+23-345-67890">+91 9959353902</a></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-btm py-2 mt-3">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-auto">
+					<div class="copyright">
+						&copy; Copyright Reserved to <span class="text-color">Codebook</span>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4">
+					<a class="backtop js-scroll-trigger" href="#top">
+						<i class="icofont-long-arrow-up"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+   
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="{% static 'mainapp/plugins/jquery/jquery.js' %}"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="{% static 'mainapp/plugins/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/counterup/jquery.easing.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'mainapp/plugins/slick-carousel/slick/slick.min.js' %}"></script>
+    <!-- Counterup -->
+    <script src="{% static 'mainapp/plugins/counterup/jquery.waypoints.min.js' %}"></script>
+    
+    <script src="{% static 'mainapp/plugins/shuffle/shuffle.min.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/counterup/jquery.counterup.min.js' %}"></script> 
+    
+    <script src="{% static 'mainapp/js/script.js' %}"></script>
+    <script src="{% static 'mainapp/js/swal.js' %}"></script>
+    <script src="{% static 'mainapp/js/contact.js' %}"></script>
+
+  </body>
+  </html>
+   

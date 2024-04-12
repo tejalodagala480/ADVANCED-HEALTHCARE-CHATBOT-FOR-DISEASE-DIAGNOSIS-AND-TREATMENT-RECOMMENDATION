@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="">
+  <meta name="author" content="codebook.in">
+
+  <title>Home Page</title>
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Icon Font CSS -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/icofont/icofont.min.css' %}">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/slick-carousel/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'mainapp/plugins/slick-carousel/slick/slick-theme.css' %}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body id="top">
+  {% if messages %}
+  {% for message in messages %}
+      {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <script>swal({
+                  title: "Success!",
+                  text: "{{message}}",
+                  icon: "success",
+                  button: "OK",
+              });
+          </script>
+      
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+          <script>swal({
+                  title: "Warning :)",
+                  text: "{{message}}",
+                  icon: "warning",
+                  button: "OK",
+              
+              });
+          </script>
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+          <script>swal({
+                  title: "info :)",
+                  text: "{{message}}",
+                  icon: "info",
+                  button: "OK",
+              });
+          </script>
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <script>swal({
+                  title: "error :)",
+                  text: "{{message}}",
+                  icon: "error",
+                  button: "OK",
+              });
+          </script>
+      {% endif %}
+  {% endfor %}
+{% endif %}
+
+<header>
+	
+	<nav class="navbar navbar-expand-lg navigation" id="navbar">
+		<div class="container">
+			<a class="navbar-brand" href="{% url 'home' %}">
+			  </a>
+		  	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icofont-navigation-menu"></span>
+		  </button>
+	  
+		  <div class="collapse navbar-collapse" id="navbarmain">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+			 	<li class="nav-item"><a class="nav-link" href="{% url 'user_login' %}">User</a></li>
+			 	<li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+			</ul>
+		  </div>
+		</div>
+	</nav>
+</header>
+	
+
+
+
+<!-- Slider Start -->
+
+<section class="page-title bg-2">
+    <div class="overlay"></div>
+    
+    <div class="container">
+        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <h1 class="text-capitalize mb-5 text-lg">ADVANCED HEALTHCARE CHATBOT FOR DISEASE DIAGNOSIS AND TREATMENT RECOMMENDATION</h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- slider end -->
+
+<section class="section about">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img">
+					<img src="{% static 'mainapp/images/about/chatbots-for-website.Gif' %}" alt="" class="img-fluid">
+					<img src="{% static 'mainapp/images/about/Donts_gif_File.Gif' %}" alt="" class="img-fluid mt-4">
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6">
+				<div class="about-img mt-4 mt-lg-0">
+					<img src="{% static 'mainapp/images/about/1526463315111.Gif' %}" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="about-content pl-4 mt-4 mt-lg-0">
+					<h2 class="title-color">ADVANCED HEALTHCARE CHATBOT<br>Personal care & healthy living</h2>
+					<p class="mt-4 mb-5">"Elevate your life with personal care and embrace the vitality of healthy living. It's not just a lifestyle; it's a commitment to your well-being and happiness."</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section service gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+				<div class="section-title">
+					<h2>ADVANCED HEALTHCARE CHATBOT FOR DISEASE DIAGNOSIS AND TREATMENT RECOMMENDATION</h2>
+					<div class="divider mx-auto my-4"></div>
+					<p>"Introducing our cutting-edge healthcare chatbot, revolutionizing disease diagnosis and treatment recommendations with advanced technology and personalized care."</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-laboratory text-lg"></i>
+						<h4 class="mt-3 mb-3">Laboratory services</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">"Empowering health through precision: Our dynamic laboratory services lead the way to accurate diagnoses and tailored treatments."</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-heart-beat-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Heart Disease</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">"Defending hearts, restoring lives: Our comprehensive approach to heart disease care ensures every beat counts."</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-tooth text-lg"></i>
+						<h4 class="mt-3 mb-3">Dental Care</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">"Smile brighter, live healthier: Our expert dental care brings out the best in your oral health."</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-crutch text-lg"></i>
+						<h4 class="mt-3 mb-3">Body Surgery</h4>
+					</div>
+
+					<div class="content">
+						<p class="mb-4">"Transforming bodies, restoring confidence: Our skilled body surgery delivers personalized results you can trust."</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-brain-alt text-lg"></i>
+						<h4 class="mt-3 mb-3">Neurology Surgery</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">"Precision meets progress: Our neurology surgery ensures optimal outcomes for every brain and nerve challenge."</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="service-item mb-4">
+					<div class="icon d-flex align-items-center">
+						<i class="icofont-dna-alt-1 text-lg"></i>
+						<h4 class="mt-3 mb-3">Gynecology</h4>
+					</div>
+					<div class="content">
+						<p class="mb-4">"Empowering women's health: Our gynecology services offer compassionate care and personalized solutions for every stage of life."</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+<!-- footer Start -->
+<footer class="footer section gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 mr-auto col-sm-6">
+				<div class="widget mb-4 mb-lg-0">
+					<div class="logo mb-4">
+						<img src="images/logo3.PNG" alt="" class="img-fluid">
+					</div>
+					<p>Social Media Accounts</p>
+
+					<ul class="list-inline footer-socials mt-4">
+						<li class="list-inline-item"><a href="https://www.facebook.com/tejalodagala480"><i class="icofont-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="https://twitter.com/tejalodagala480"><i class="icofont-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.linkedin.com/in/teja-lodagala-317686207"><i class="icofont-linkedin"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="widget widget-contact mb-5 mb-lg-0">
+					<h4 class="text-capitalize mb-3">Get in Touch</h4>
+					<div class="divider mb-4"></div>
+
+					<div class="footer-contact-block mb-3">
+						<div class="icon d-flex align-items-center">
+							<i class="icofont-email mr-3"></i>
+							<span class="h6 mb-0">Support Available for 24/7</span>
+						</div>
+						<h4 class="mt-2"><a href="tel:+23-345-67890">tejalodagala480@email.com</a></h4>
+					</div>
+
+					<div class="footer-contact-block">
+						<div class="icon d-flex align-items-center">
+							<i class="icofont-support mr-3"></i>
+							<span class="h6 mb-0">Mon to Fri : 09:00 - 10:00</span>
+						</div>
+						<h4 class="mt-2"><a href="tel:+23-345-67890">+91 9959353902</a></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-btm py-2 mt-3">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-auto">
+					<div class="copyright">
+						&copy; Copyright Reserved to <span class="text-color">Lodagala Teja</span>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4">
+					<a class="backtop js-scroll-trigger" href="#top">
+						<i class="icofont-long-arrow-up"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+   
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="{% static 'mainapp/plugins/jquery/jquery.js' %}"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="{% static 'mainapp/plugins/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/counterup/jquery.easing.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'mainapp/plugins/slick-carousel/slick/slick.min.js' %}"></script>
+    <!-- Counterup -->
+    <script src="{% static 'mainapp/plugins/counterup/jquery.waypoints.min.js' %}"></script>
+    
+    <script src="{% static 'mainapp/plugins/shuffle/shuffle.min.js' %}"></script>
+    <script src="{% static 'mainapp/plugins/counterup/jquery.counterup.min.js' %}"></script> 
+    
+    <script src="{% static 'mainapp/js/script.js' %}"></script>
+    <script src="{% static 'mainapp/js/contact.js' %}"></script>
+
+  </body>
+  </html>
+   
